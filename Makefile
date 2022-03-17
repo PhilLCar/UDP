@@ -14,7 +14,7 @@ ifeq "$(LANG)" "C++"
 	TARGET   = test_cpp
 	LIB      = libudp++.a
 	OBJ      = *.o
-	PRE      = make test LANG=C
+	PRE      = make X LANG=C
 else
 	CMP      = $(CC)
 	MAIN     = test/main.c
@@ -25,6 +25,7 @@ else
 endif
 
 OBJ_LIST  = $(LANG_SRC:=.o)
+COMMAND   = obj
 
 .PHONY: test clean clean-lib clean-obj clean-bin lib bin obj
 
@@ -37,7 +38,7 @@ OBJ_LIST  = $(LANG_SRC:=.o)
 $(LIBRARIES)$(LIB):
 	ar rcs $@ $(OBJECTS)$(OBJ)
 
-lib: $(LIBRARIES)$(LIB)
+lib: obj $(LIBRARIES)$(LIB)
 
 clean-bin:
 	rm -f $(BINARIES)$(TARGET)
@@ -50,6 +51,12 @@ clean-lib:
 
 clean: clean-lib clean-obj clean-bin
 
-test: clean $(eval CFLAGS+=-g) $(OBJ_LIST)
-	$(PRE)
+obj: $(OBJ_LIST)
+	$(PRE:X=$(COMMAND))
+
+debug:
+	$(eval CFLAGS+=-g)
+	$(eval COMMAND=debug $(COMMAND))
+
+test: debug obj
 	$(CMP) -o $(BINARIES)$(TARGET) $(MAIN) $(OBJECTS)$(OBJ) $(CFLAGS)
