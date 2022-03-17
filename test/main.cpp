@@ -14,8 +14,9 @@ struct Env {
 
 void receiveMessage(UDP::Message &message, Env* env) {
   std::string m((char*)message.bytes, message.size);
-  std::cout << "From " << message.address << "(" << message.port << "): " << m << std::endl;
-  env->client = message.address + ":" + std::to_string(message.port);
+  std::cout << "From " << message.address.address_str() << 
+                   "(" << message.address.port() << "): " << m << std::endl;
+  env->client = std::to_string(message.address);
 }
 
 int main(int argc, char* argv[]) {

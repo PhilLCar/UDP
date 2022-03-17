@@ -10,13 +10,7 @@
 
 namespace std {
   string to_string(UDP::IPV4Address address) {
-    string str = "";
-    str = to_string(address.bytes[0]) + "." +
-          to_string(address.bytes[1]) + "." +
-          to_string(address.bytes[2]) + "." +
-          to_string(address.bytes[3]) + ":" +
-          to_string(address.port);
-    return str;
+    return address.addr_str + ":" + to_string(address._port);
   }
 }
 
@@ -34,7 +28,21 @@ namespace UDP
         current = "";
       }
     }
-    port = std::stoi(current);
+    _port    = std::stoi(current);
+    addr_str = std::to_string(bytes[3]) + "." +
+               std::to_string(bytes[2]) + "." +
+               std::to_string(bytes[1]) + "." +
+               std::to_string(bytes[0]);
+  }
+
+  IPV4Address::IPV4Address(const unsigned int address, const unsigned short port)
+    : addr_int(address)
+    , _port(port)
+  {
+    addr_str = std::to_string(bytes[3]) + "." +
+               std::to_string(bytes[2]) + "." +
+               std::to_string(bytes[1]) + "." +
+               std::to_string(bytes[0]);
   }
 
   Common::Common(const unsigned short port, const void* env)
@@ -94,10 +102,9 @@ namespace UDP
     Common* this_com = (Common*)server->env;
 
 
-    message.bytes   = server->buffer;
-    message.size    = server->bufsize;
-    message.address = inet_ntoa(server->addr_in.sin_addr);
-    message.port    = ntohs(server->addr_in.sin_port);
+    message.bytes = server->buffer;
+    message.size  = server->bufsize;
+    message.address = IPV4Address(ntohl(server->addr_in.sin_addr.s_addr), ntohs(server->addr_in.sin_port));
 
     this_com->onReceive.trigger(message, this_com->env);
   }

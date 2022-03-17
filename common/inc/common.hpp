@@ -24,28 +24,36 @@ namespace UDP {
   struct IPV4Address {
   public:
     IPV4Address(const char *address);
-    inline IPV4Address(const unsigned int address, const unsigned short port)
-      : address(address)
-      , port(port)
-    {}
-    inline IPV4Address(const std::string& address)
-      : IPV4Address(address.c_str())
-    {}
+    IPV4Address(const unsigned int address, const unsigned short port);
+
+    inline IPV4Address(const std::string& address) : IPV4Address(address.c_str()) {}
+    inline IPV4Address() : IPV4Address(0, 0) {}
+
+  public:
+    inline const std::string&   address_str() const { return addr_str; }
+    inline       unsigned int   address_int() const { return addr_int; }
+    inline       unsigned short port()        const { return _port;    }
+
+    inline bool operator ==(IPV4Address& other) {
+      return addr_int == other.addr_int && _port == other._port;
+    }
+
   public:
     friend std::string std::to_string(IPV4Address address);
-  public:
+
+  private:
     union {
       unsigned char bytes[4];
-      unsigned int  address;
+      unsigned int  addr_int;
     };
-    unsigned short port;
+    unsigned short _port;
+    std::string    addr_str;
   };
 
   struct Message {
     unsigned char* bytes;
     size_t         size;
-    std::string    address;
-    unsigned short port;
+    IPV4Address    address;
   };
 
   typedef void (*Callback)(Message&, void*);
@@ -60,10 +68,12 @@ namespace UDP {
     inline void operator -=(Callback callback) {
       callbacks.erase(std::remove(callbacks.begin(), callbacks.end(), callback), callbacks.end());
     }
+
   private:
     inline void trigger(Message& message, const void *env) {
       for (auto callback : callbacks) callback(message, (void*)env);
     }
+
   private:
     std::vector<Callback> callbacks;
   };
