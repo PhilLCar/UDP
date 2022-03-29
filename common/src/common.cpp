@@ -97,7 +97,7 @@ namespace UDP
     return lastMessage;
   }
 
-  void Common::receive(UDPServer *server) {
+  void Common::receive(UDPServer* server) {
     Message message;
     Common* this_com = (Common*)server->env;
 
