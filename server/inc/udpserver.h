@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-UDPServer *udpsopen(const unsigned short port, FILE *messages, FILE *errors);
+UDPServer *udpopen(const unsigned short port, FILE *messages, FILE *errors);
 
 #ifdef __cplusplus
 }

@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
   if (argc > 1) {
     if(!strcmp(argv[1], "-s")) {
-      server = udpsopen(8008, stdout, stderr);
+      server = udpopen(8008, stdout, stderr);
     } else if (!strcmp(argv[1], "-c")) {
       server = udpiopen(8008, 8009, stdout, stderr);
       client = 1;

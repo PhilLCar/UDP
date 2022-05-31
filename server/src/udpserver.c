@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-UDPServer *udpsopen(const unsigned short port, FILE *messages, FILE *errors) {
+UDPServer *udpopen(const unsigned short port, FILE *messages, FILE *errors) {
   struct sockaddr_in  addr;
   int                 socket_fd;
   UDPServer          *server = NULL;

@@ -13,7 +13,7 @@ namespace UDP
   Server::Server(const unsigned short port, const void* env)
     : Common(port, env)
   {
-    server = udpsopen(port, messages, errors);
+    server = udpopen(port, messages, errors);
     server->env = this;
   }
 
