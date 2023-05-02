@@ -1,4 +1,4 @@
-# UPD utilities for C/C++
+# UPD utilities for C/C++ (CUT)
 This repository contains a minimal implementation of a UDP server and client for C/C++.
 
 # Usage
