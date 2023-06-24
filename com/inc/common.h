@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <arpa/inet.h>
+#include <sys/time.h>
 
 #define UDP_MAX_CHUNK (1 << 16)
 #define UDP_TIMEOUT        3000

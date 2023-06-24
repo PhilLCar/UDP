@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <errno.h>
 
-const struct timeval TIMEOUT = { UDP_TIMEOUT / 1000, (UDP_TIMEOUT % 1000) * 1000};
+const struct timeval TIMEOUT = { UDP_TIMEOUT / 1000, (UDP_TIMEOUT % 1000) * 1000 };
 
 void *_udplisten(void *vargp) {
   socklen_t  addr_size = sizeof(struct sockaddr_in);

@@ -13,6 +13,9 @@ UDPServer *udpopen(const unsigned short port, FILE *messages, FILE *errors) {
   struct sockaddr_in  addr;
   int                 socket_fd;
   UDPServer          *server = NULL;
+
+  if (!messages) messages = stdout;
+  if (!errors)   errors   = stderr;
   
   socket_fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   

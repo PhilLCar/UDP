@@ -12,7 +12,10 @@
 extern "C" {
 #endif
 
+// If trying to reach a server on another machine
 UDPServer *udpcopen(const char *address, const unsigned short port, FILE *messages, FILE *errors);
+
+// For interprocess communication
 UDPServer *udpiopen(const unsigned short oport, const unsigned short iport, FILE *message, FILE *errors);
 
 #ifdef __cplusplus
