@@ -6,7 +6,7 @@
 #ifndef UDPCLIENT_H
 #define UDPCLIENT_H
 
-#include <common.h>
+#include <udpcommon.h>
 
 #ifdef __cplusplus
 extern "C" {

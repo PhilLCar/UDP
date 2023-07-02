@@ -14,10 +14,10 @@ namespace UDP
     : Common(oport, env)
   {
     if (oport == iport) {
-      // Local connection
+      // Remote connection
       server = udpcopen(iaddress, iport, messages, errors);
     } else {
-      // Remote connection
+      // Local connection
       server = udpiopen(oport, iport, messages, errors);
     }
     server->env = this;

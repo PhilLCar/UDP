@@ -6,7 +6,7 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-#include <common.h>
+#include <udpcommon.h>
 
 #include <vector>
 #include <algorithm>

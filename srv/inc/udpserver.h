@@ -6,7 +6,7 @@
 #ifndef UDPSERVER_H
 #define UDPSERVER_H
 
-#include <common.h>
+#include <udpcommon.h>
 
 #ifdef __cplusplus
 extern "C" {

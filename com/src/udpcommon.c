@@ -3,7 +3,7 @@
  * Description: Common structures for C.
  */
 
-#include <common.h>
+#include <udpcommon.h>
 
 #include <unistd.h>
 #include <stdlib.h>

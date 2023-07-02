@@ -6,7 +6,7 @@
 #ifndef UDPCLIENT_HPP
 #define UDPCLIENT_HPP
 
-#include <common.hpp>
+#include <udpcommon.hpp>
 
 #include <string>
 

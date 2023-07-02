@@ -3,11 +3,11 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "Build",
+      "label": "Build-C",
       "command": "make",
       "args": [
-        "test",
-        "LANG=C++"
+        "library",
+        "DEBUG=1"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -19,7 +19,28 @@
         "kind": "build",
         "isDefault": true
       },
-      "detail": "Build C/C++"
+      "detail": "Build C"
+    },
+    {
+      "type": "shell",
+      "label": "Build-C++",
+      "command": "make",
+      "args": [
+        "library",
+        "LANG=C++",
+        "DEBUG=1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Build C++"
     }
   ]
 }

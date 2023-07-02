@@ -6,7 +6,7 @@
 #ifndef UDPSERVER_HPP
 #define UDPSERVER_HPP
 
-#include <common.hpp>
+#include <udpcommon.hpp>
 
 #include <string>
 

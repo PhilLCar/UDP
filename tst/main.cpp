@@ -31,25 +31,25 @@ int main(int argc, char* argv[]) {
       common = new UDP::Client(8008, 8009, env);
       client = 1;
     }
-  }
 
-  common->onReceive += (UDP::Callback)receiveMessage;
+    common->onReceive += (UDP::Callback)receiveMessage;
 
-  common->start();
-  std::cout << common->message() << std::endl;
-  std::cout << "To quit send 'q' string.\n";
-  while (true) {
-    std::string line;
-    std::getline(std::cin, line);
-    if (line == "q") break;
-    if (env.client == "" && !client) {
-      std::cerr << "Cannot send a message because no client has sent anything yet.\n";
-    } else {
-      if (client) ((UDP::Client*)common)->send(line);
-      else        ((UDP::Server*)common)->send(env.client.c_str(), line);
+    common->start();
+    std::cout << common->message() << std::endl;
+    std::cout << "To quit send 'q' string.\n";
+    while (true) {
+      std::string line;
+      std::getline(std::cin, line);
+      if (line == "q") break;
+      if (env.client == "" && !client) {
+        std::cerr << "Cannot send a message because no client has sent anything yet.\n";
+      } else {
+        if (client) ((UDP::Client*)common)->send(line);
+        else        ((UDP::Server*)common)->send(env.client.c_str(), line);
+      }
     }
+    common->stop();
+    delete common;
   }
-  common->stop();
-  delete common;
   return 0;
 }
