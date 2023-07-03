@@ -3,53 +3,19 @@
  * Description: Common structures for C++.
  */
 
-#ifndef COMMON_HPP
-#define COMMON_HPP
+#ifndef UDPCOMMON_HPP
+#define UDPCOMMON_HPP
 
 #include <udpcommon.h>
+#include <IPV4Address.hpp>
 
 #include <vector>
 #include <algorithm>
 #include <string>
 
-namespace UDP {
-  class IPV4Address;
-}
-
-namespace std {
-  string to_string(UDP::IPV4Address address);
-}
+using namespace Networking;
 
 namespace UDP {
-  struct IPV4Address {
-  public:
-    IPV4Address(const char *address);
-    IPV4Address(const unsigned int address, const unsigned short port);
-
-    inline IPV4Address(const std::string& address) : IPV4Address(address.c_str()) {}
-    inline IPV4Address() : IPV4Address(0, 0) {}
-
-  public:
-    inline const std::string&   address_str() const { return addr_str; }
-    inline       unsigned int   address_int() const { return addr_int; }
-    inline       unsigned short port()        const { return _port;    }
-
-    inline bool operator ==(IPV4Address& other) {
-      return addr_int == other.addr_int && _port == other._port;
-    }
-
-  public:
-    friend std::string std::to_string(IPV4Address address);
-
-  private:
-    union {
-      unsigned char bytes[4];
-      unsigned int  addr_int;
-    };
-    unsigned short _port;
-    std::string    addr_str;
-  };
-
   struct Message {
     unsigned char* bytes;
     size_t         size;

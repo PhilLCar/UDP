@@ -3,8 +3,8 @@
  * Description: Common structures for C.
  */
 
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef UDPCOMMON_H
+#define UDPCOMMON_H
 
 #include <stdio.h>
 #include <pthread.h>
