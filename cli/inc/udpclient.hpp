@@ -10,9 +10,14 @@
 
 #include <string>
 
+using namespace Networking;
+
 namespace UDP {
   class Client : public Common {
   public:
+    inline Client(const IPV4Address server, const IPV4Address client)
+      : Client(server.port(), client.port(), server.address_str().c_str(), nullptr)
+    {}
     inline Client(const unsigned short port, const char* address)
       : Client(port, port, address, nullptr)
     {}
@@ -20,6 +25,10 @@ namespace UDP {
       : Client(oport, iport, "127.0.0.1", nullptr)
     {}
 
+    template <typename T>
+    inline Client(const IPV4Address server, const IPV4Address client, T& env)
+      : Client(server.port(), client.port(), server.address_str().c_str(), (const void*)&env)
+    {}
     template <typename T>
     inline Client(const unsigned short port, const char* address, const T& env)
       : Client(port, port, address, (const void*)&env)

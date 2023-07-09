@@ -24,14 +24,16 @@ namespace UDP
   }
 
   bool Client::send(const unsigned char* bytes, size_t length) {
-    return udpsend(server, bytes, length) == 1;
+    return udpsend(server, bytes, length) == (int)length;
   }
 
   bool Client::send(const std::string& message) {
-    return udpsend(server, (unsigned char*)message.c_str(), message.length()) == 1;
+    int length = message.length();
+    return udpsend(server, (unsigned char*)message.c_str(), length) == length;
   }
 
   bool Client::send (const char* message) {
-    return udpsend(server, (unsigned char*)message, std::strlen(message)) == 1;
+    int length = std::strlen(message);
+    return udpsend(server, (unsigned char*)message, length) == length;
   }
 }
