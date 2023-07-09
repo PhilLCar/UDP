@@ -40,7 +40,7 @@ void udpstop(UDPServer *server) {
 }
 
 int udpsend(UDPServer *server, const unsigned char *bytes, size_t length) {
-  return sendto(server->fd, bytes, length, 0, (struct sockaddr*)&server->addr_out, sizeof(struct sockaddr_in)) >= 0;
+  return sendto(server->fd, bytes, length, 0, (struct sockaddr*)&server->addr_out, sizeof(struct sockaddr_in));
 }
 
 void udpclose(UDPServer *server) {
